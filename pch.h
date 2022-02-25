@@ -11,7 +11,7 @@
 #include "framework.h"
 #include "gd.h"
 #include "MinHook.h"
-#include "cocos2d.h"
+#include <cocos2d.h>
 
 using namespace cocos2d;
 

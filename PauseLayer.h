@@ -3,5 +3,10 @@
 
 namespace PauseLayer {
 	inline bool(__thiscall* init)(CCLayer* self);
-	bool __fastcall hook(CCLayer* seld);
+	bool __fastcall hook(CCLayer* self);
+
+	class Callbacks {
+	public:
+		void noclipButton(CCObject*);
+	};
 }
