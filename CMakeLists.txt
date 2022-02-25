@@ -1,0 +1,595 @@
+cmake_minimum_required(VERSION 3.21)
+project(gdware)
+
+set(CMAKE_CXX_STANDARD 14)
+
+include_directories(.)
+include_directories(cappuccino-sdk)
+include_directories(cappuccino-sdk/incl)
+include_directories(cappuccino-sdk/incl/cocos2dx)
+include_directories(cappuccino-sdk/incl/cocos2dx/actions)
+include_directories(cappuccino-sdk/incl/cocos2dx/base_nodes)
+include_directories(cappuccino-sdk/incl/cocos2dx/cocoa)
+include_directories(cappuccino-sdk/incl/cocos2dx/custom)
+include_directories(cappuccino-sdk/incl/cocos2dx/custom/Delegates)
+include_directories(cappuccino-sdk/incl/cocos2dx/custom/Sprites)
+include_directories(cappuccino-sdk/incl/cocos2dx/custom/Sprites/CCMenuItemSpriteExtra)
+include_directories(cappuccino-sdk/incl/cocos2dx/custom/Sprites/CCSpriteExtra)
+include_directories(cappuccino-sdk/incl/cocos2dx/draw_nodes)
+include_directories(cappuccino-sdk/incl/cocos2dx/effects)
+include_directories(cappuccino-sdk/incl/cocos2dx/include)
+include_directories(cappuccino-sdk/incl/cocos2dx/kazmath)
+include_directories(cappuccino-sdk/incl/cocos2dx/kazmath/include)
+include_directories(cappuccino-sdk/incl/cocos2dx/kazmath/include/kazmath)
+include_directories(cappuccino-sdk/incl/cocos2dx/kazmath/include/kazmath/GL)
+include_directories(cappuccino-sdk/incl/cocos2dx/kazmath/src)
+include_directories(cappuccino-sdk/incl/cocos2dx/keypad_dispatcher)
+include_directories(cappuccino-sdk/incl/cocos2dx/label_nodes)
+include_directories(cappuccino-sdk/incl/cocos2dx/layers_scenes_transitions_nodes)
+include_directories(cappuccino-sdk/incl/cocos2dx/menu_nodes)
+include_directories(cappuccino-sdk/incl/cocos2dx/misc_nodes)
+include_directories(cappuccino-sdk/incl/cocos2dx/particle_nodes)
+include_directories(cappuccino-sdk/incl/cocos2dx/platform)
+include_directories(cappuccino-sdk/incl/cocos2dx/platform/third_party)
+include_directories(cappuccino-sdk/incl/cocos2dx/platform/third_party/win32)
+include_directories(cappuccino-sdk/incl/cocos2dx/platform/third_party/win32/curl)
+include_directories(cappuccino-sdk/incl/cocos2dx/platform/third_party/win32/iconv)
+include_directories(cappuccino-sdk/incl/cocos2dx/platform/third_party/win32/libjpeg)
+include_directories(cappuccino-sdk/incl/cocos2dx/platform/third_party/win32/libpng)
+include_directories(cappuccino-sdk/incl/cocos2dx/platform/third_party/win32/libtiff)
+include_directories(cappuccino-sdk/incl/cocos2dx/platform/third_party/win32/libwebp)
+include_directories(cappuccino-sdk/incl/cocos2dx/platform/third_party/win32/OGLES)
+include_directories(cappuccino-sdk/incl/cocos2dx/platform/third_party/win32/OGLES/GL)
+include_directories(cappuccino-sdk/incl/cocos2dx/platform/third_party/win32/pthread)
+include_directories(cappuccino-sdk/incl/cocos2dx/platform/third_party/win32/zlib)
+include_directories(cappuccino-sdk/incl/cocos2dx/platform/win32)
+include_directories(cappuccino-sdk/incl/cocos2dx/platform/win32/compat)
+include_directories(cappuccino-sdk/incl/cocos2dx/script_support)
+include_directories(cappuccino-sdk/incl/cocos2dx/shaders)
+include_directories(cappuccino-sdk/incl/cocos2dx/sprite_nodes)
+include_directories(cappuccino-sdk/incl/cocos2dx/support)
+include_directories(cappuccino-sdk/incl/cocos2dx/support/component)
+include_directories(cappuccino-sdk/incl/cocos2dx/support/data_support)
+include_directories(cappuccino-sdk/incl/cocos2dx/support/image_support)
+include_directories(cappuccino-sdk/incl/cocos2dx/support/tinyxml2)
+include_directories(cappuccino-sdk/incl/cocos2dx/support/user_default)
+include_directories(cappuccino-sdk/incl/cocos2dx/support/zip_support)
+include_directories(cappuccino-sdk/incl/cocos2dx/text_input_node)
+include_directories(cappuccino-sdk/incl/cocos2dx/textures)
+include_directories(cappuccino-sdk/incl/cocos2dx/tilemap_parallax_nodes)
+include_directories(cappuccino-sdk/incl/cocos2dx/touch_dispatcher)
+include_directories(cappuccino-sdk/incl/extensions)
+include_directories(cappuccino-sdk/incl/extensions/AssetsManager)
+include_directories(cappuccino-sdk/incl/extensions/CCBReader)
+include_directories(cappuccino-sdk/incl/extensions/CocoStudio)
+include_directories(cappuccino-sdk/incl/extensions/CocoStudio/Action)
+include_directories(cappuccino-sdk/incl/extensions/CocoStudio/Armature)
+include_directories(cappuccino-sdk/incl/extensions/CocoStudio/Armature/animation)
+include_directories(cappuccino-sdk/incl/extensions/CocoStudio/Armature/datas)
+include_directories(cappuccino-sdk/incl/extensions/CocoStudio/Armature/display)
+include_directories(cappuccino-sdk/incl/extensions/CocoStudio/Armature/external_tool)
+include_directories(cappuccino-sdk/incl/extensions/CocoStudio/Armature/physics)
+include_directories(cappuccino-sdk/incl/extensions/CocoStudio/Armature/utils)
+include_directories(cappuccino-sdk/incl/extensions/CocoStudio/Components)
+include_directories(cappuccino-sdk/incl/extensions/CocoStudio/GUI)
+include_directories(cappuccino-sdk/incl/extensions/CocoStudio/GUI/BaseClasses)
+include_directories(cappuccino-sdk/incl/extensions/CocoStudio/GUI/Layouts)
+include_directories(cappuccino-sdk/incl/extensions/CocoStudio/GUI/System)
+include_directories(cappuccino-sdk/incl/extensions/CocoStudio/GUI/UIWidgets)
+include_directories(cappuccino-sdk/incl/extensions/CocoStudio/GUI/UIWidgets/Compatible)
+include_directories(cappuccino-sdk/incl/extensions/CocoStudio/GUI/UIWidgets/ScrollWidget)
+include_directories(cappuccino-sdk/incl/extensions/CocoStudio/Json)
+include_directories(cappuccino-sdk/incl/extensions/CocoStudio/Json/rapidjson)
+include_directories(cappuccino-sdk/incl/extensions/CocoStudio/Json/rapidjson/internal)
+include_directories(cappuccino-sdk/incl/extensions/CocoStudio/Reader)
+include_directories(cappuccino-sdk/incl/extensions/CocoStudio/Reader/WidgetReader)
+include_directories(cappuccino-sdk/incl/extensions/CocoStudio/Reader/WidgetReader/ButtonReader)
+include_directories(cappuccino-sdk/incl/extensions/CocoStudio/Reader/WidgetReader/CheckBoxReader)
+include_directories(cappuccino-sdk/incl/extensions/CocoStudio/Reader/WidgetReader/ImageViewReader)
+include_directories(cappuccino-sdk/incl/extensions/CocoStudio/Reader/WidgetReader/LabelAtlasReader)
+include_directories(cappuccino-sdk/incl/extensions/CocoStudio/Reader/WidgetReader/LabelBMFontReader)
+include_directories(cappuccino-sdk/incl/extensions/CocoStudio/Reader/WidgetReader/LabelReader)
+include_directories(cappuccino-sdk/incl/extensions/CocoStudio/Reader/WidgetReader/LayoutReader)
+include_directories(cappuccino-sdk/incl/extensions/CocoStudio/Reader/WidgetReader/ListViewReader)
+include_directories(cappuccino-sdk/incl/extensions/CocoStudio/Reader/WidgetReader/LoadingBarReader)
+include_directories(cappuccino-sdk/incl/extensions/CocoStudio/Reader/WidgetReader/PageViewReader)
+include_directories(cappuccino-sdk/incl/extensions/CocoStudio/Reader/WidgetReader/ScrollViewReader)
+include_directories(cappuccino-sdk/incl/extensions/CocoStudio/Reader/WidgetReader/SliderReader)
+include_directories(cappuccino-sdk/incl/extensions/CocoStudio/Reader/WidgetReader/TextFieldReader)
+include_directories(cappuccino-sdk/incl/extensions/CocoStudio/Trigger)
+include_directories(cappuccino-sdk/incl/extensions/GUI)
+include_directories(cappuccino-sdk/incl/extensions/GUI/CCControlExtension)
+include_directories(cappuccino-sdk/incl/extensions/GUI/CCEditBox)
+include_directories(cappuccino-sdk/incl/extensions/GUI/CCScrollView)
+include_directories(cappuccino-sdk/incl/extensions/LocalStorage)
+include_directories(cappuccino-sdk/incl/extensions/network)
+include_directories(cappuccino-sdk/incl/extensions/physics_nodes)
+include_directories(cappuccino-sdk/incl/extensions/spine)
+include_directories(cappuccino-sdk/lib)
+include_directories(libs)
+include_directories(libs/gd.h)
+include_directories(libs/gd.h/achievement_nodes)
+include_directories(libs/gd.h/actions)
+include_directories(libs/gd.h/audio_nodes)
+include_directories(libs/gd.h/delegates)
+include_directories(libs/gd.h/include)
+include_directories(libs/gd.h/layers_scenes_transitions_nodes)
+include_directories(libs/gd.h/level_nodes)
+include_directories(libs/gd.h/manager_nodes)
+include_directories(libs/gd.h/menu_nodes)
+include_directories(libs/gd.h/other_nodes)
+include_directories(libs/gd.h/scroll_nodes)
+include_directories(libs/gd.h/sprite_nodes)
+include_directories(libs/gd.h/text_input_nodes)
+include_directories(libs/MinHook)
+
+add_executable(gdware
+        cappuccino-sdk/incl/cocos2dx/actions/CCAction.h
+        cappuccino-sdk/incl/cocos2dx/actions/CCActionCamera.h
+        cappuccino-sdk/incl/cocos2dx/actions/CCActionCatmullRom.h
+        cappuccino-sdk/incl/cocos2dx/actions/CCActionEase.h
+        cappuccino-sdk/incl/cocos2dx/actions/CCActionGrid.h
+        cappuccino-sdk/incl/cocos2dx/actions/CCActionGrid3D.h
+        cappuccino-sdk/incl/cocos2dx/actions/CCActionInstant.h
+        cappuccino-sdk/incl/cocos2dx/actions/CCActionInterval.h
+        cappuccino-sdk/incl/cocos2dx/actions/CCActionManager.h
+        cappuccino-sdk/incl/cocos2dx/actions/CCActionPageTurn3D.h
+        cappuccino-sdk/incl/cocos2dx/actions/CCActionProgressTimer.h
+        cappuccino-sdk/incl/cocos2dx/actions/CCActionTiledGrid.h
+        cappuccino-sdk/incl/cocos2dx/actions/CCActionTween.h
+        cappuccino-sdk/incl/cocos2dx/base_nodes/CCAtlasNode.h
+        cappuccino-sdk/incl/cocos2dx/base_nodes/CCGLBufferedNode.h
+        cappuccino-sdk/incl/cocos2dx/base_nodes/CCNode.h
+        cappuccino-sdk/incl/cocos2dx/cocoa/CCAffineTransform.h
+        cappuccino-sdk/incl/cocos2dx/cocoa/CCArray.h
+        cappuccino-sdk/incl/cocos2dx/cocoa/CCAutoreleasePool.h
+        cappuccino-sdk/incl/cocos2dx/cocoa/CCBool.h
+        cappuccino-sdk/incl/cocos2dx/cocoa/CCDataVisitor.h
+        cappuccino-sdk/incl/cocos2dx/cocoa/CCDictionary.h
+        cappuccino-sdk/incl/cocos2dx/cocoa/CCDouble.h
+        cappuccino-sdk/incl/cocos2dx/cocoa/CCFloat.h
+        cappuccino-sdk/incl/cocos2dx/cocoa/CCGeometry.h
+        cappuccino-sdk/incl/cocos2dx/cocoa/CCInteger.h
+        cappuccino-sdk/incl/cocos2dx/cocoa/CCNS.h
+        cappuccino-sdk/incl/cocos2dx/cocoa/CCObject.h
+        cappuccino-sdk/incl/cocos2dx/cocoa/CCSet.h
+        cappuccino-sdk/incl/cocos2dx/cocoa/CCString.h
+        cappuccino-sdk/incl/cocos2dx/cocoa/CCZone.h
+        cappuccino-sdk/incl/cocos2dx/custom/Delegates/CCKeyboardDelegate.h
+        cappuccino-sdk/incl/cocos2dx/custom/Delegates/CCMouseDelegate.h
+        cappuccino-sdk/incl/cocos2dx/custom/Sprites/CCMenuItemSpriteExtra/CCMenuItemSpriteExtra.cpp
+        cappuccino-sdk/incl/cocos2dx/custom/Sprites/CCMenuItemSpriteExtra/CCMenuItemSpriteExtra.h
+        cappuccino-sdk/incl/cocos2dx/custom/Sprites/CCSpriteExtra/CCSpriteExtra.h
+        cappuccino-sdk/incl/cocos2dx/draw_nodes/CCDrawingPrimitives.h
+        cappuccino-sdk/incl/cocos2dx/draw_nodes/CCDrawNode.h
+        cappuccino-sdk/incl/cocos2dx/effects/CCGrabber.h
+        cappuccino-sdk/incl/cocos2dx/effects/CCGrid.h
+        cappuccino-sdk/incl/cocos2dx/include/ccConfig.h
+        cappuccino-sdk/incl/cocos2dx/include/CCEventType.h
+        cappuccino-sdk/incl/cocos2dx/include/ccMacros.h
+        cappuccino-sdk/incl/cocos2dx/include/CCProtocols.h
+        cappuccino-sdk/incl/cocos2dx/include/ccTypeInfo.h
+        cappuccino-sdk/incl/cocos2dx/include/ccTypes.h
+        cappuccino-sdk/incl/cocos2dx/include/cocos2d.h
+        cappuccino-sdk/incl/cocos2dx/kazmath/include/kazmath/GL/mat4stack.h
+        cappuccino-sdk/incl/cocos2dx/kazmath/include/kazmath/GL/matrix.h
+        cappuccino-sdk/incl/cocos2dx/kazmath/include/kazmath/aabb.h
+        cappuccino-sdk/incl/cocos2dx/kazmath/include/kazmath/kazmath.h
+        cappuccino-sdk/incl/cocos2dx/kazmath/include/kazmath/mat3.h
+        cappuccino-sdk/incl/cocos2dx/kazmath/include/kazmath/mat4.h
+        cappuccino-sdk/incl/cocos2dx/kazmath/include/kazmath/neon_matrix_impl.h
+        cappuccino-sdk/incl/cocos2dx/kazmath/include/kazmath/plane.h
+        cappuccino-sdk/incl/cocos2dx/kazmath/include/kazmath/quaternion.h
+        cappuccino-sdk/incl/cocos2dx/kazmath/include/kazmath/ray2.h
+        cappuccino-sdk/incl/cocos2dx/kazmath/include/kazmath/utility.h
+        cappuccino-sdk/incl/cocos2dx/kazmath/include/kazmath/vec2.h
+        cappuccino-sdk/incl/cocos2dx/kazmath/include/kazmath/vec3.h
+        cappuccino-sdk/incl/cocos2dx/kazmath/include/kazmath/vec4.h
+        cappuccino-sdk/incl/cocos2dx/kazmath/src/GL/mat4stack.c
+        cappuccino-sdk/incl/cocos2dx/kazmath/src/GL/matrix.c
+        cappuccino-sdk/incl/cocos2dx/kazmath/src/aabb.c
+        cappuccino-sdk/incl/cocos2dx/kazmath/src/mat3.c
+        cappuccino-sdk/incl/cocos2dx/kazmath/src/mat4.c
+        cappuccino-sdk/incl/cocos2dx/kazmath/src/neon_matrix_impl.c
+        cappuccino-sdk/incl/cocos2dx/kazmath/src/plane.c
+        cappuccino-sdk/incl/cocos2dx/kazmath/src/quaternion.c
+        cappuccino-sdk/incl/cocos2dx/kazmath/src/ray2.c
+        cappuccino-sdk/incl/cocos2dx/kazmath/src/utility.c
+        cappuccino-sdk/incl/cocos2dx/kazmath/src/vec2.c
+        cappuccino-sdk/incl/cocos2dx/kazmath/src/vec3.c
+        cappuccino-sdk/incl/cocos2dx/kazmath/src/vec4.c
+        cappuccino-sdk/incl/cocos2dx/keypad_dispatcher/CCKeypadDelegate.h
+        cappuccino-sdk/incl/cocos2dx/keypad_dispatcher/CCKeypadDispatcher.h
+        cappuccino-sdk/incl/cocos2dx/label_nodes/CCLabelAtlas.h
+        cappuccino-sdk/incl/cocos2dx/label_nodes/CCLabelBMFont.h
+        cappuccino-sdk/incl/cocos2dx/label_nodes/CCLabelTTF.h
+        cappuccino-sdk/incl/cocos2dx/layers_scenes_transitions_nodes/CCLayer.h
+        cappuccino-sdk/incl/cocos2dx/layers_scenes_transitions_nodes/CCScene.h
+        cappuccino-sdk/incl/cocos2dx/layers_scenes_transitions_nodes/CCTransition.h
+        cappuccino-sdk/incl/cocos2dx/layers_scenes_transitions_nodes/CCTransitionPageTurn.h
+        cappuccino-sdk/incl/cocos2dx/layers_scenes_transitions_nodes/CCTransitionProgress.h
+        cappuccino-sdk/incl/cocos2dx/menu_nodes/CCMenu.h
+        cappuccino-sdk/incl/cocos2dx/menu_nodes/CCMenuItem.h
+        cappuccino-sdk/incl/cocos2dx/misc_nodes/CCClippingNode.h
+        cappuccino-sdk/incl/cocos2dx/misc_nodes/CCMotionStreak.h
+        cappuccino-sdk/incl/cocos2dx/misc_nodes/CCProgressTimer.h
+        cappuccino-sdk/incl/cocos2dx/misc_nodes/CCRenderTexture.h
+        cappuccino-sdk/incl/cocos2dx/particle_nodes/CCParticleBatchNode.h
+        cappuccino-sdk/incl/cocos2dx/particle_nodes/CCParticleExamples.h
+        cappuccino-sdk/incl/cocos2dx/particle_nodes/CCParticleSystem.h
+        cappuccino-sdk/incl/cocos2dx/particle_nodes/CCParticleSystemQuad.h
+        cappuccino-sdk/incl/cocos2dx/particle_nodes/firePngData.h
+        cappuccino-sdk/incl/cocos2dx/platform/third_party/win32/curl/curl.h
+        cappuccino-sdk/incl/cocos2dx/platform/third_party/win32/curl/curlbuild.h
+        cappuccino-sdk/incl/cocos2dx/platform/third_party/win32/curl/curlrules.h
+        cappuccino-sdk/incl/cocos2dx/platform/third_party/win32/curl/curlver.h
+        cappuccino-sdk/incl/cocos2dx/platform/third_party/win32/curl/easy.h
+        cappuccino-sdk/incl/cocos2dx/platform/third_party/win32/curl/mprintf.h
+        cappuccino-sdk/incl/cocos2dx/platform/third_party/win32/curl/multi.h
+        cappuccino-sdk/incl/cocos2dx/platform/third_party/win32/curl/stdcheaders.h
+        cappuccino-sdk/incl/cocos2dx/platform/third_party/win32/curl/typecheck-gcc.h
+        cappuccino-sdk/incl/cocos2dx/platform/third_party/win32/iconv/iconv.h
+        cappuccino-sdk/incl/cocos2dx/platform/third_party/win32/libjpeg/jconfig.h
+        cappuccino-sdk/incl/cocos2dx/platform/third_party/win32/libjpeg/jconfig_linux.h
+        cappuccino-sdk/incl/cocos2dx/platform/third_party/win32/libjpeg/jconfig_win.h
+        cappuccino-sdk/incl/cocos2dx/platform/third_party/win32/libjpeg/jerror.h
+        cappuccino-sdk/incl/cocos2dx/platform/third_party/win32/libjpeg/jmorecfg.h
+        cappuccino-sdk/incl/cocos2dx/platform/third_party/win32/libjpeg/jpeglib.h
+        cappuccino-sdk/incl/cocos2dx/platform/third_party/win32/libpng/png.h
+        cappuccino-sdk/incl/cocos2dx/platform/third_party/win32/libpng/pngconf.h
+        cappuccino-sdk/incl/cocos2dx/platform/third_party/win32/libtiff/tiff.h
+        cappuccino-sdk/incl/cocos2dx/platform/third_party/win32/libtiff/tiffconf.h
+        cappuccino-sdk/incl/cocos2dx/platform/third_party/win32/libtiff/tiffio.h
+        cappuccino-sdk/incl/cocos2dx/platform/third_party/win32/libtiff/tiffvers.h
+        cappuccino-sdk/incl/cocos2dx/platform/third_party/win32/libwebp/decode.h
+        cappuccino-sdk/incl/cocos2dx/platform/third_party/win32/libwebp/encode.h
+        cappuccino-sdk/incl/cocos2dx/platform/third_party/win32/libwebp/types.h
+        cappuccino-sdk/incl/cocos2dx/platform/third_party/win32/OGLES/GL/glew.h
+        cappuccino-sdk/incl/cocos2dx/platform/third_party/win32/OGLES/GL/glxew.h
+        cappuccino-sdk/incl/cocos2dx/platform/third_party/win32/OGLES/GL/wglew.h
+        cappuccino-sdk/incl/cocos2dx/platform/third_party/win32/pthread/pthread.h
+        cappuccino-sdk/incl/cocos2dx/platform/third_party/win32/pthread/sched.h
+        cappuccino-sdk/incl/cocos2dx/platform/third_party/win32/pthread/semaphore.h
+        cappuccino-sdk/incl/cocos2dx/platform/third_party/win32/zlib/zconf.h
+        cappuccino-sdk/incl/cocos2dx/platform/third_party/win32/zlib/zlib.h
+        cappuccino-sdk/incl/cocos2dx/platform/win32/compat/stdint.h
+        cappuccino-sdk/incl/cocos2dx/platform/win32/CCAccelerometer.h
+        cappuccino-sdk/incl/cocos2dx/platform/win32/CCApplication.h
+        cappuccino-sdk/incl/cocos2dx/platform/win32/CCEGLView.h
+        cappuccino-sdk/incl/cocos2dx/platform/win32/CCFileUtilsWin32.h
+        cappuccino-sdk/incl/cocos2dx/platform/win32/CCGL.h
+        cappuccino-sdk/incl/cocos2dx/platform/win32/CCPlatformDefine.h
+        cappuccino-sdk/incl/cocos2dx/platform/win32/CCStdC.h
+        cappuccino-sdk/incl/cocos2dx/platform/CCAccelerometerDelegate.h
+        cappuccino-sdk/incl/cocos2dx/platform/CCApplicationProtocol.h
+        cappuccino-sdk/incl/cocos2dx/platform/CCCommon.h
+        cappuccino-sdk/incl/cocos2dx/platform/CCDevice.h
+        cappuccino-sdk/incl/cocos2dx/platform/CCEGLViewProtocol.h
+        cappuccino-sdk/incl/cocos2dx/platform/CCFileUtils.h
+        cappuccino-sdk/incl/cocos2dx/platform/CCImage.h
+        cappuccino-sdk/incl/cocos2dx/platform/CCImageCommon_cpp.h
+        cappuccino-sdk/incl/cocos2dx/platform/CCPlatformConfig.h
+        cappuccino-sdk/incl/cocos2dx/platform/CCPlatformMacros.h
+        cappuccino-sdk/incl/cocos2dx/platform/CCSAXParser.h
+        cappuccino-sdk/incl/cocos2dx/platform/CCThread.h
+        cappuccino-sdk/incl/cocos2dx/platform/platform.h
+        cappuccino-sdk/incl/cocos2dx/script_support/CCScriptSupport.h
+        cappuccino-sdk/incl/cocos2dx/shaders/CCGLProgram.h
+        cappuccino-sdk/incl/cocos2dx/shaders/ccGLStateCache.h
+        cappuccino-sdk/incl/cocos2dx/shaders/ccShader_Position_uColor_frag.h
+        cappuccino-sdk/incl/cocos2dx/shaders/ccShader_Position_uColor_vert.h
+        cappuccino-sdk/incl/cocos2dx/shaders/ccShader_PositionColor_frag.h
+        cappuccino-sdk/incl/cocos2dx/shaders/ccShader_PositionColor_vert.h
+        cappuccino-sdk/incl/cocos2dx/shaders/ccShader_PositionColorLengthTexture_frag.h
+        cappuccino-sdk/incl/cocos2dx/shaders/ccShader_PositionColorLengthTexture_vert.h
+        cappuccino-sdk/incl/cocos2dx/shaders/ccShader_PositionTexture_frag.h
+        cappuccino-sdk/incl/cocos2dx/shaders/ccShader_PositionTexture_uColor_frag.h
+        cappuccino-sdk/incl/cocos2dx/shaders/ccShader_PositionTexture_uColor_vert.h
+        cappuccino-sdk/incl/cocos2dx/shaders/ccShader_PositionTexture_vert.h
+        cappuccino-sdk/incl/cocos2dx/shaders/ccShader_PositionTextureA8Color_frag.h
+        cappuccino-sdk/incl/cocos2dx/shaders/ccShader_PositionTextureA8Color_vert.h
+        cappuccino-sdk/incl/cocos2dx/shaders/ccShader_PositionTextureColor_frag.h
+        cappuccino-sdk/incl/cocos2dx/shaders/ccShader_PositionTextureColor_vert.h
+        cappuccino-sdk/incl/cocos2dx/shaders/ccShader_PositionTextureColorAlphaTest_frag.h
+        cappuccino-sdk/incl/cocos2dx/shaders/CCShaderCache.h
+        cappuccino-sdk/incl/cocos2dx/shaders/ccShaderEx_SwitchMask_frag.h
+        cappuccino-sdk/incl/cocos2dx/shaders/ccShaders.h
+        cappuccino-sdk/incl/cocos2dx/sprite_nodes/CCAnimation.h
+        cappuccino-sdk/incl/cocos2dx/sprite_nodes/CCAnimationCache.h
+        cappuccino-sdk/incl/cocos2dx/sprite_nodes/CCSprite.h
+        cappuccino-sdk/incl/cocos2dx/sprite_nodes/CCSpriteBatchNode.h
+        cappuccino-sdk/incl/cocos2dx/sprite_nodes/CCSpriteFrame.h
+        cappuccino-sdk/incl/cocos2dx/sprite_nodes/CCSpriteFrameCache.h
+        cappuccino-sdk/incl/cocos2dx/support/component/CCComponent.h
+        cappuccino-sdk/incl/cocos2dx/support/component/CCComponentContainer.h
+        cappuccino-sdk/incl/cocos2dx/support/data_support/ccCArray.h
+        cappuccino-sdk/incl/cocos2dx/support/data_support/uthash.h
+        cappuccino-sdk/incl/cocos2dx/support/data_support/utlist.h
+        cappuccino-sdk/incl/cocos2dx/support/image_support/TGAlib.h
+        cappuccino-sdk/incl/cocos2dx/support/tinyxml2/tinyxml2.h
+        cappuccino-sdk/incl/cocos2dx/support/user_default/CCUserDefault.h
+        cappuccino-sdk/incl/cocos2dx/support/user_default/CCUserDefault.mm
+        cappuccino-sdk/incl/cocos2dx/support/zip_support/ioapi.h
+        cappuccino-sdk/incl/cocos2dx/support/zip_support/unzip.h
+        cappuccino-sdk/incl/cocos2dx/support/zip_support/ZipUtils.h
+        cappuccino-sdk/incl/cocos2dx/support/base64.h
+        cappuccino-sdk/incl/cocos2dx/support/CCNotificationCenter.h
+        cappuccino-sdk/incl/cocos2dx/support/CCPointExtension.h
+        cappuccino-sdk/incl/cocos2dx/support/CCProfiling.h
+        cappuccino-sdk/incl/cocos2dx/support/ccUTF8.h
+        cappuccino-sdk/incl/cocos2dx/support/ccUtils.h
+        cappuccino-sdk/incl/cocos2dx/support/CCVertex.h
+        cappuccino-sdk/incl/cocos2dx/support/TransformUtils.h
+        cappuccino-sdk/incl/cocos2dx/text_input_node/CCIMEDelegate.h
+        cappuccino-sdk/incl/cocos2dx/text_input_node/CCIMEDispatcher.h
+        cappuccino-sdk/incl/cocos2dx/text_input_node/CCTextFieldTTF.h
+        cappuccino-sdk/incl/cocos2dx/textures/CCTexture2D.h
+        cappuccino-sdk/incl/cocos2dx/textures/CCTextureAtlas.h
+        cappuccino-sdk/incl/cocos2dx/textures/CCTextureCache.h
+        cappuccino-sdk/incl/cocos2dx/textures/CCTextureETC.h
+        cappuccino-sdk/incl/cocos2dx/textures/CCTexturePVR.h
+        cappuccino-sdk/incl/cocos2dx/tilemap_parallax_nodes/CCParallaxNode.h
+        cappuccino-sdk/incl/cocos2dx/tilemap_parallax_nodes/CCTileMapAtlas.h
+        cappuccino-sdk/incl/cocos2dx/tilemap_parallax_nodes/CCTMXLayer.h
+        cappuccino-sdk/incl/cocos2dx/tilemap_parallax_nodes/CCTMXObjectGroup.h
+        cappuccino-sdk/incl/cocos2dx/tilemap_parallax_nodes/CCTMXTiledMap.h
+        cappuccino-sdk/incl/cocos2dx/tilemap_parallax_nodes/CCTMXXMLParser.h
+        cappuccino-sdk/incl/cocos2dx/touch_dispatcher/CCTouch.h
+        cappuccino-sdk/incl/cocos2dx/touch_dispatcher/CCTouchDelegateProtocol.h
+        cappuccino-sdk/incl/cocos2dx/touch_dispatcher/CCTouchDispatcher.h
+        cappuccino-sdk/incl/cocos2dx/touch_dispatcher/CCTouchHandler.h
+        cappuccino-sdk/incl/cocos2dx/CCCamera.h
+        cappuccino-sdk/incl/cocos2dx/CCConfiguration.h
+        cappuccino-sdk/incl/cocos2dx/CCDirector.h
+        cappuccino-sdk/incl/cocos2dx/ccFPSImages.c
+        cappuccino-sdk/incl/cocos2dx/ccFPSImages.h
+        cappuccino-sdk/incl/cocos2dx/CCScheduler.h
+        cappuccino-sdk/incl/extensions/AssetsManager/AssetsManager.h
+        cappuccino-sdk/incl/extensions/CCBReader/CCBAnimationManager.h
+        cappuccino-sdk/incl/extensions/CCBReader/CCBFileLoader.h
+        cappuccino-sdk/incl/extensions/CCBReader/CCBKeyframe.h
+        cappuccino-sdk/incl/extensions/CCBReader/CCBMemberVariableAssigner.h
+        cappuccino-sdk/incl/extensions/CCBReader/CCBReader.h
+        cappuccino-sdk/incl/extensions/CCBReader/CCBSelectorResolver.h
+        cappuccino-sdk/incl/extensions/CCBReader/CCBSequence.h
+        cappuccino-sdk/incl/extensions/CCBReader/CCBSequenceProperty.h
+        cappuccino-sdk/incl/extensions/CCBReader/CCBValue.h
+        cappuccino-sdk/incl/extensions/CCBReader/CCControlButtonLoader.h
+        cappuccino-sdk/incl/extensions/CCBReader/CCControlLoader.h
+        cappuccino-sdk/incl/extensions/CCBReader/CCData.h
+        cappuccino-sdk/incl/extensions/CCBReader/CCLabelBMFontLoader.h
+        cappuccino-sdk/incl/extensions/CCBReader/CCLabelTTFLoader.h
+        cappuccino-sdk/incl/extensions/CCBReader/CCLayerColorLoader.h
+        cappuccino-sdk/incl/extensions/CCBReader/CCLayerGradientLoader.h
+        cappuccino-sdk/incl/extensions/CCBReader/CCLayerLoader.h
+        cappuccino-sdk/incl/extensions/CCBReader/CCMenuItemImageLoader.h
+        cappuccino-sdk/incl/extensions/CCBReader/CCMenuItemLoader.h
+        cappuccino-sdk/incl/extensions/CCBReader/CCMenuLoader.h
+        cappuccino-sdk/incl/extensions/CCBReader/CCNode+CCBRelativePositioning.h
+        cappuccino-sdk/incl/extensions/CCBReader/CCNodeLoader.h
+        cappuccino-sdk/incl/extensions/CCBReader/CCNodeLoaderLibrary.h
+        cappuccino-sdk/incl/extensions/CCBReader/CCNodeLoaderListener.h
+        cappuccino-sdk/incl/extensions/CCBReader/CCParticleSystemQuadLoader.h
+        cappuccino-sdk/incl/extensions/CCBReader/CCScale9SpriteLoader.h
+        cappuccino-sdk/incl/extensions/CCBReader/CCScrollViewLoader.h
+        cappuccino-sdk/incl/extensions/CCBReader/CCSpriteLoader.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Action/CCActionEaseEx.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Action/CCActionFrame.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Action/CCActionFrameEasing.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Action/CCActionManager.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Action/CCActionNode.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Action/CCActionObject.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Armature/animation/CCArmatureAnimation.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Armature/animation/CCProcessBase.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Armature/animation/CCTween.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Armature/datas/CCDatas.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Armature/display/CCBatchNode.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Armature/display/CCDecorativeDisplay.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Armature/display/CCDisplayFactory.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Armature/display/CCDisplayManager.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Armature/display/CCSkin.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Armature/external_tool/sigslot.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Armature/physics/CCColliderDetector.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Armature/utils/CCArmatureDataManager.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Armature/utils/CCArmatureDefine.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Armature/utils/CCDataReaderHelper.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Armature/utils/CCSpriteFrameCacheHelper.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Armature/utils/CCTransformHelp.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Armature/utils/CCTweenFunction.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Armature/utils/CCUtilMath.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Armature/CCArmature.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Armature/CCBone.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Components/CCComAttribute.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Components/CCComAudio.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Components/CCComBase.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Components/CCComController.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Components/CCComRender.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Components/CCInputDelegate.h
+        cappuccino-sdk/incl/extensions/CocoStudio/GUI/BaseClasses/UIWidget.h
+        cappuccino-sdk/incl/extensions/CocoStudio/GUI/Layouts/UILayout.h
+        cappuccino-sdk/incl/extensions/CocoStudio/GUI/Layouts/UILayoutDefine.h
+        cappuccino-sdk/incl/extensions/CocoStudio/GUI/Layouts/UILayoutParameter.h
+        cappuccino-sdk/incl/extensions/CocoStudio/GUI/System/CocosGUI.h
+        cappuccino-sdk/incl/extensions/CocoStudio/GUI/System/GUIDefine.h
+        cappuccino-sdk/incl/extensions/CocoStudio/GUI/System/UIHelper.h
+        cappuccino-sdk/incl/extensions/CocoStudio/GUI/System/UITouchGroup.h
+        cappuccino-sdk/incl/extensions/CocoStudio/GUI/UIWidgets/Compatible/CompatibleClasses.h
+        cappuccino-sdk/incl/extensions/CocoStudio/GUI/UIWidgets/ScrollWidget/UIListView.h
+        cappuccino-sdk/incl/extensions/CocoStudio/GUI/UIWidgets/ScrollWidget/UIPageView.h
+        cappuccino-sdk/incl/extensions/CocoStudio/GUI/UIWidgets/ScrollWidget/UIScrollInterface.h
+        cappuccino-sdk/incl/extensions/CocoStudio/GUI/UIWidgets/ScrollWidget/UIScrollView.h
+        cappuccino-sdk/incl/extensions/CocoStudio/GUI/UIWidgets/UIButton.h
+        cappuccino-sdk/incl/extensions/CocoStudio/GUI/UIWidgets/UICheckBox.h
+        cappuccino-sdk/incl/extensions/CocoStudio/GUI/UIWidgets/UIImageView.h
+        cappuccino-sdk/incl/extensions/CocoStudio/GUI/UIWidgets/UILabel.h
+        cappuccino-sdk/incl/extensions/CocoStudio/GUI/UIWidgets/UILabelAtlas.h
+        cappuccino-sdk/incl/extensions/CocoStudio/GUI/UIWidgets/UILabelBMFont.h
+        cappuccino-sdk/incl/extensions/CocoStudio/GUI/UIWidgets/UILoadingBar.h
+        cappuccino-sdk/incl/extensions/CocoStudio/GUI/UIWidgets/UIRichText.h
+        cappuccino-sdk/incl/extensions/CocoStudio/GUI/UIWidgets/UISlider.h
+        cappuccino-sdk/incl/extensions/CocoStudio/GUI/UIWidgets/UITextField.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Json/rapidjson/internal/pow10.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Json/rapidjson/internal/stack.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Json/rapidjson/internal/strfunc.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Json/rapidjson/document.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Json/rapidjson/filestream.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Json/rapidjson/prettywriter.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Json/rapidjson/rapidjson.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Json/rapidjson/reader.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Json/rapidjson/stringbuffer.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Json/rapidjson/writer.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Json/DictionaryHelper.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Reader/WidgetReader/ButtonReader/ButtonReader.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Reader/WidgetReader/CheckBoxReader/CheckBoxReader.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Reader/WidgetReader/ImageViewReader/ImageViewReader.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Reader/WidgetReader/LabelAtlasReader/LabelAtlasReader.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Reader/WidgetReader/LabelBMFontReader/LabelBMFontReader.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Reader/WidgetReader/LabelReader/LabelReader.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Reader/WidgetReader/LayoutReader/LayoutReader.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Reader/WidgetReader/ListViewReader/ListViewReader.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Reader/WidgetReader/LoadingBarReader/LoadingBarReader.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Reader/WidgetReader/PageViewReader/PageViewReader.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Reader/WidgetReader/ScrollViewReader/ScrollViewReader.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Reader/WidgetReader/SliderReader/SliderReader.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Reader/WidgetReader/TextFieldReader/TextFieldReader.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Reader/WidgetReader/WidgetReader.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Reader/WidgetReader/WidgetReaderProtocol.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Reader/GUIReader.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Reader/SceneReader.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Trigger/ObjectFactory.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Trigger/TriggerBase.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Trigger/TriggerMng.h
+        cappuccino-sdk/incl/extensions/CocoStudio/Trigger/TriggerObj.h
+        cappuccino-sdk/incl/extensions/GUI/CCControlExtension/CCControl.h
+        cappuccino-sdk/incl/extensions/GUI/CCControlExtension/CCControlButton.h
+        cappuccino-sdk/incl/extensions/GUI/CCControlExtension/CCControlColourPicker.h
+        cappuccino-sdk/incl/extensions/GUI/CCControlExtension/CCControlExtensions.h
+        cappuccino-sdk/incl/extensions/GUI/CCControlExtension/CCControlHuePicker.h
+        cappuccino-sdk/incl/extensions/GUI/CCControlExtension/CCControlPotentiometer.h
+        cappuccino-sdk/incl/extensions/GUI/CCControlExtension/CCControlSaturationBrightnessPicker.h
+        cappuccino-sdk/incl/extensions/GUI/CCControlExtension/CCControlSlider.h
+        cappuccino-sdk/incl/extensions/GUI/CCControlExtension/CCControlStepper.h
+        cappuccino-sdk/incl/extensions/GUI/CCControlExtension/CCControlSwitch.h
+        cappuccino-sdk/incl/extensions/GUI/CCControlExtension/CCControlUtils.h
+        cappuccino-sdk/incl/extensions/GUI/CCControlExtension/CCInvocation.h
+        cappuccino-sdk/incl/extensions/GUI/CCControlExtension/CCScale9Sprite.h
+        cappuccino-sdk/incl/extensions/GUI/CCEditBox/CCEditBox.h
+        cappuccino-sdk/incl/extensions/GUI/CCEditBox/CCEditBoxImpl.h
+        cappuccino-sdk/incl/extensions/GUI/CCEditBox/CCEditBoxImplAndroid.h
+        cappuccino-sdk/incl/extensions/GUI/CCEditBox/CCEditBoxImplIOS.h
+        cappuccino-sdk/incl/extensions/GUI/CCEditBox/CCEditBoxImplIOS.mm
+        cappuccino-sdk/incl/extensions/GUI/CCEditBox/CCEditBoxImplMac.h
+        cappuccino-sdk/incl/extensions/GUI/CCEditBox/CCEditBoxImplMac.mm
+        cappuccino-sdk/incl/extensions/GUI/CCEditBox/CCEditBoxImplTizen.h
+        cappuccino-sdk/incl/extensions/GUI/CCEditBox/CCEditBoxImplWin.h
+        cappuccino-sdk/incl/extensions/GUI/CCEditBox/CCEditBoxImplWp8.h
+        cappuccino-sdk/incl/extensions/GUI/CCScrollView/CCScrollView.h
+        cappuccino-sdk/incl/extensions/GUI/CCScrollView/CCSorting.h
+        cappuccino-sdk/incl/extensions/GUI/CCScrollView/CCTableView.h
+        cappuccino-sdk/incl/extensions/GUI/CCScrollView/CCTableViewCell.h
+        cappuccino-sdk/incl/extensions/LocalStorage/LocalStorage.h
+        cappuccino-sdk/incl/extensions/network/HttpClient.h
+        cappuccino-sdk/incl/extensions/network/HttpRequest.h
+        cappuccino-sdk/incl/extensions/network/HttpResponse.h
+        cappuccino-sdk/incl/extensions/network/WebSocket.h
+        cappuccino-sdk/incl/extensions/physics_nodes/CCPhysicsDebugNode.h
+        cappuccino-sdk/incl/extensions/physics_nodes/CCPhysicsSprite.h
+        cappuccino-sdk/incl/extensions/spine/Animation.h
+        cappuccino-sdk/incl/extensions/spine/AnimationState.h
+        cappuccino-sdk/incl/extensions/spine/AnimationStateData.h
+        cappuccino-sdk/incl/extensions/spine/Atlas.h
+        cappuccino-sdk/incl/extensions/spine/AtlasAttachmentLoader.h
+        cappuccino-sdk/incl/extensions/spine/Attachment.h
+        cappuccino-sdk/incl/extensions/spine/AttachmentLoader.h
+        cappuccino-sdk/incl/extensions/spine/Bone.h
+        cappuccino-sdk/incl/extensions/spine/BoneData.h
+        cappuccino-sdk/incl/extensions/spine/CCSkeleton.h
+        cappuccino-sdk/incl/extensions/spine/CCSkeletonAnimation.h
+        cappuccino-sdk/incl/extensions/spine/extension.h
+        cappuccino-sdk/incl/extensions/spine/Json.h
+        cappuccino-sdk/incl/extensions/spine/RegionAttachment.h
+        cappuccino-sdk/incl/extensions/spine/Skeleton.h
+        cappuccino-sdk/incl/extensions/spine/SkeletonData.h
+        cappuccino-sdk/incl/extensions/spine/SkeletonJson.h
+        cappuccino-sdk/incl/extensions/spine/Skin.h
+        cappuccino-sdk/incl/extensions/spine/Slot.h
+        cappuccino-sdk/incl/extensions/spine/SlotData.h
+        cappuccino-sdk/incl/extensions/spine/spine-cocos2dx.h
+        cappuccino-sdk/incl/extensions/spine/spine.h
+        cappuccino-sdk/incl/extensions/cocos-ext.h
+        cappuccino-sdk/incl/extensions/ExtensionMacros.h
+        cappuccino-sdk/lib/cappuccino.lib
+        cappuccino-sdk/lib/libExtensions.lib
+        libs/gd.h/achievement_nodes/AchievementBar.h
+        libs/gd.h/achievement_nodes/AchievementNotifier.h
+        libs/gd.h/actions/CCCircleWave.h
+        libs/gd.h/audio_nodes/FMODAudioEngine.h
+        libs/gd.h/delegates/delegates.h
+        libs/gd.h/include/gd.h
+        libs/gd.h/include/gdMacros.h
+        libs/gd.h/include/GDProtocols.h
+        libs/gd.h/layers_scenes_transitions_nodes/CCBlockLayer.h
+        libs/gd.h/layers_scenes_transitions_nodes/CCNodeContainer.h
+        libs/gd.h/layers_scenes_transitions_nodes/EditorUI.h
+        libs/gd.h/layers_scenes_transitions_nodes/FLAlertLayer.h
+        libs/gd.h/layers_scenes_transitions_nodes/GJBaseGameLayer.h
+        libs/gd.h/layers_scenes_transitions_nodes/GJDropDownLayer.h
+        libs/gd.h/layers_scenes_transitions_nodes/GJListLayer.h
+        libs/gd.h/layers_scenes_transitions_nodes/GJSpecialColorSelect.h
+        libs/gd.h/layers_scenes_transitions_nodes/LevelEditorLayer.h
+        libs/gd.h/layers_scenes_transitions_nodes/LoadingCircle.h
+        libs/gd.h/layers_scenes_transitions_nodes/LoadingLayer.h
+        libs/gd.h/layers_scenes_transitions_nodes/MenuLayer.h
+        libs/gd.h/layers_scenes_transitions_nodes/NumberInputLayer.h
+        libs/gd.h/layers_scenes_transitions_nodes/OBB2D.h
+        libs/gd.h/layers_scenes_transitions_nodes/PauseLayer.h
+        libs/gd.h/layers_scenes_transitions_nodes/PlayLayer.h
+        libs/gd.h/layers_scenes_transitions_nodes/SetIDPopup.h
+        libs/gd.h/layers_scenes_transitions_nodes/TextAlertPopup.h
+        libs/gd.h/level_nodes/GJGameLevel.h
+        libs/gd.h/level_nodes/LevelSettingsObject.h
+        libs/gd.h/manager_nodes/AchievementManager.h
+        libs/gd.h/manager_nodes/GameLevelManager.h
+        libs/gd.h/manager_nodes/GameManager.h
+        libs/gd.h/manager_nodes/GameSoundManager.h
+        libs/gd.h/manager_nodes/GJAccountManager.h
+        libs/gd.h/manager_nodes/GJUserScore.h
+        libs/gd.h/manager_nodes/GManager.h
+        libs/gd.h/manager_nodes/MusicDownloadManager.h
+        libs/gd.h/menu_nodes/CCMenuItemSpriteExtra.h
+        libs/gd.h/menu_nodes/CCMenuItemToggler.h
+        libs/gd.h/menu_nodes/Slider.h
+        libs/gd.h/other_nodes/GJSearchObject.h
+        libs/gd.h/other_nodes/SongInfoObject.h
+        libs/gd.h/scroll_nodes/BoomListView.h
+        libs/gd.h/scroll_nodes/CCContentLayer.h
+        libs/gd.h/scroll_nodes/CCIndexPath.h
+        libs/gd.h/scroll_nodes/CCScrollLayerExt.h
+        libs/gd.h/scroll_nodes/CustomListView.h
+        libs/gd.h/scroll_nodes/ScrollingLayer.h
+        libs/gd.h/scroll_nodes/TableView.h
+        libs/gd.h/sprite_nodes/AnimatedShopKeeper.h
+        libs/gd.h/sprite_nodes/ButtonSprite.h
+        libs/gd.h/sprite_nodes/CCAnimatedSprite.h
+        libs/gd.h/sprite_nodes/CCSpritePlus.h
+        libs/gd.h/sprite_nodes/GameObject.h
+        libs/gd.h/sprite_nodes/GJItemIcon.h
+        libs/gd.h/sprite_nodes/GJRobotSprite.h
+        libs/gd.h/sprite_nodes/GJSpiderSprite.h
+        libs/gd.h/sprite_nodes/PlayerObject.h
+        libs/gd.h/sprite_nodes/SimplePlayer.h
+        libs/gd.h/sprite_nodes/TextArea.h
+        libs/gd.h/text_input_nodes/CCTextInputNode.h
+        libs/MinHook/MinHook.h
+        .gitattributes
+        .gitignore
+        dllmain.cpp
+        framework.h
+        gdware.sln
+        gdware.vcxproj
+        gdware.vcxproj.filters
+        gdware.vcxproj.user
+        PauseLayer.cpp
+        PauseLayer.h
+        pch.cpp
+        pch.h)

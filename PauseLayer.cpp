@@ -31,13 +31,13 @@ bool __fastcall PauseLayer::hook(CCLayer* self) {
 	noclipButton->setScale(0.5F);
 	noclipLabel->setScale(0.5F);
 
-	noclipLabel->setPositionX(10);
-	noclipLabel->setPositionY(50);
+	noclipLabel->setPositionX(50);
+	noclipLabel->setPositionY(5);
 	noclipButton->setPositionX(5);
 	noclipButton->setPositionY(5);
 
 	auto menu = CCMenu::create();
-	menu->setPosition({ 25, 25 });
+	menu->setPosition({ 10, 10 });
 	menu->addChild(noclipLabel);
 	menu->addChild(noclipButton);
 
