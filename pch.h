@@ -9,7 +9,10 @@
 
 // add headers that you want to pre-compile here
 #include "framework.h"
-#include "libs/MinHook/MinHook.h"
+#include "gd.h"
+#include "MinHook.h"
 #include "cocos2d.h"
+
+using namespace cocos2d;
 
 #endif //PCH_H

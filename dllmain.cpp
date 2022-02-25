@@ -2,14 +2,11 @@
 #include "pch.h"
 #include <cocos2d.h>
 
-DWORD WINAPI my_thread(void* hModule) {
-    //Your code goes here
-    //====================
-
+DWORD WINAPI gdware_thread(void* hModule) {
+    if (MH_Initialize() != MH_OK) {
+        FreeLibraryAndExitThread(reinterpret_cast<HMODULE>(hModule), 0);
+    }
     
-    
-    //This line will dettach your DLL when executed. Remove if needed
-    FreeLibraryAndExitThread(reinterpret_cast<HMODULE>(hModule), 0);
 }
 
 BOOL APIENTRY DllMain(HMODULE hModule,
@@ -20,7 +17,7 @@ BOOL APIENTRY DllMain(HMODULE hModule,
     switch (ul_reason_for_call)
     {
     case DLL_PROCESS_ATTACH:
-        CreateThread(0, 0x1000, my_thread, hModule, 0, 0);
+        CreateThread(0, 0x1000, gdware_thread, hModule, 0, 0);
     case DLL_THREAD_ATTACH:
     case DLL_THREAD_DETACH:
     case DLL_PROCESS_DETACH:
