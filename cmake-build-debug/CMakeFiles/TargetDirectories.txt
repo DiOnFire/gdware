@@ -1,0 +1,3 @@
+C:/Users/DiOnFire/Desktop/CappuccinoSDK-master/projects/gdware/cmake-build-debug/CMakeFiles/gdware.dir
+C:/Users/DiOnFire/Desktop/CappuccinoSDK-master/projects/gdware/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/DiOnFire/Desktop/CappuccinoSDK-master/projects/gdware/cmake-build-debug/CMakeFiles/rebuild_cache.dir
