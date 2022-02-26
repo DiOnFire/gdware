@@ -1,35 +1,31 @@
-#include "pch.h"
+#include "Utils.h"
 #include "PauseLayer.h"
 
 bool noclipEnabled = false;
-bool noAttemptsEnabled = false;
+bool everythingHurtsEnabled = false;
 
 void PauseLayer::Callbacks::noclipButton(CCObject*) {
 	noclipEnabled = !noclipEnabled;
 	if (noclipEnabled) {
-		WriteProcessMemory(GetCurrentProcess(), reinterpret_cast<void*>(gd::base + 0x20A23C), "\xe9\x79\x06\x00\x00", 5, NULL);
+		write_bytes(gd::base + 0x20A23C, { 0xE9, 0x79, 0x06, 0x00, 0x00 });
 	}
 	else {
-		WriteProcessMemory(GetCurrentProcess(), reinterpret_cast<void*>(gd::base + 0x20A23C), "\x6a\x14\x8b\xcb\xff", 5, NULL);
+		write_bytes(gd::base + 0x20A23C, { 0x6A, 0x14, 0x8B, 0xCB, 0xFF });
 	}
 }
 
 void PauseLayer::Callbacks::everythingHurtsButton(CCObject*) {
-	noAttemptsEnabled = !noAttemptsEnabled;
-	if (noAttemptsEnabled) {
-		WriteProcessMemory(GetCurrentProcess(), reinterpret_cast<void*>(gd::base + 0x20456D), "\xb8\x02\x00\x00\x00\x90", 6, NULL);
+	everythingHurtsEnabled = !everythingHurtsEnabled;
+	if (everythingHurtsEnabled) {
+		write_bytes(gd::base + 0x20456D, { 0xB8, 0x02, 0x00, 0x00, 0x00, 0x90 });
 	}																									 
-	else {																								 
-		WriteProcessMemory(GetCurrentProcess(), reinterpret_cast<void*>(gd::base + 0x20456D), "\xb8\x83\x00\x03\x00\x00", 6, NULL);
+	else {			
+		write_bytes(gd::base + 0x20456D, { 0xB8, 0x83, 0x00, 0x03, 0x00, 0x00 });
 	}
 }
 
-auto noclipCallback(CCSprite* toggleOn, CCSprite* toggleOff) {
-	return (noclipEnabled) ? toggleOn : toggleOff;
-}
-
-auto everythingHurtsCallback(CCSprite* toggleOn, CCSprite* toggleOff) {
-	return (noAttemptsEnabled) ? toggleOn : toggleOff;
+auto checkbox_callback(bool value, CCSprite* on, CCSprite* off) {
+	return (value) ? on : off;
 }
 
 bool __fastcall PauseLayer::hook(CCLayer* self) {
@@ -40,7 +36,7 @@ bool __fastcall PauseLayer::hook(CCLayer* self) {
 	auto toggleOn = CCSprite::createWithSpriteFrameName("GJ_checkOn_001.png");
 	auto toggleOff = CCSprite::createWithSpriteFrameName("GJ_checkOff_001.png");
 
-	auto noclipButton = gd::CCMenuItemToggler::create(noclipCallback(toggleOn, toggleOff), noclipCallback(toggleOff, toggleOn), self, menu_selector(PauseLayer::Callbacks::noclipButton));
+	auto noclipButton = gd::CCMenuItemToggler::create(checkbox_callback(noclipEnabled, toggleOn, toggleOff), checkbox_callback(noclipEnabled, toggleOff, toggleOn), self, menu_selector(PauseLayer::Callbacks::noclipButton));
 	auto noclipLabel = CCLabelBMFont::create("NoClip", "bigFont.fnt");
 
 	noclipButton->setScale(0.5F);
@@ -53,22 +49,22 @@ bool __fastcall PauseLayer::hook(CCLayer* self) {
 
 	auto menu = CCMenu::create();
 
-	auto noAttemptsButton = gd::CCMenuItemToggler::create(everythingHurtsCallback(toggleOn, toggleOff), everythingHurtsCallback(toggleOff, toggleOn), self, menu_selector(PauseLayer::Callbacks::everythingHurtsButton));
-	auto noAttemptsLabel = CCLabelBMFont::create("EverythingHurts", "bigFont.fnt");
+	auto everythingHurtsButton = gd::CCMenuItemToggler::create(checkbox_callback(everythingHurtsEnabled, toggleOn, toggleOff), checkbox_callback(everythingHurtsEnabled, toggleOff, toggleOn), self, menu_selector(PauseLayer::Callbacks::everythingHurtsButton));
+	auto everythingHurtsLabel = CCLabelBMFont::create("EverythingHurts", "bigFont.fnt");
 
-	noAttemptsButton->setScale(0.5F);
-	noAttemptsLabel->setScale(0.5F);
+	everythingHurtsButton->setScale(0.5F);
+	everythingHurtsLabel->setScale(0.5F);
 
-	noAttemptsLabel->setPositionX(95);
-	noAttemptsLabel->setPositionY(30);
-	noAttemptsButton->setPositionX(5);
-	noAttemptsButton->setPositionY(30);
+	everythingHurtsLabel->setPositionX(95);
+	everythingHurtsLabel->setPositionY(30);
+	everythingHurtsButton->setPositionX(5);
+	everythingHurtsButton->setPositionY(30);
 
 	menu->setPosition({ 10, 10 });
 	menu->addChild(noclipLabel);
 	menu->addChild(noclipButton);
-	menu->addChild(noAttemptsLabel);
-	menu->addChild(noAttemptsButton);
+	menu->addChild(everythingHurtsLabel);
+	menu->addChild(everythingHurtsButton);
 
 	self->addChild(menu);
 

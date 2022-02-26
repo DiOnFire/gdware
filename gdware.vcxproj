@@ -599,6 +599,7 @@
     <ClInclude Include="libs\MinHook\MinHook.h" />
     <ClInclude Include="PauseLayer.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Utils.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="cappuccino-sdk\incl\cocos2dx\ccFPSImages.c" />
@@ -619,6 +620,7 @@
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="PauseLayer.cpp" />
     <ClCompile Include="pch.cpp" />
+    <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="libs\MinHook\libMinHook-x86-v141-mtd.lib" />

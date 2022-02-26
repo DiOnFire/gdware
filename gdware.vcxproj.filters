@@ -1347,6 +1347,9 @@
     <ClInclude Include="libs\gd.h\text_input_nodes\CCTextInputNode.h">
       <Filter>Libs\gd.h</Filter>
     </ClInclude>
+    <ClInclude Include="Utils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -1401,6 +1404,9 @@
       <Filter>Header Files\cocos2d</Filter>
     </ClCompile>
     <ClCompile Include="PauseLayer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
