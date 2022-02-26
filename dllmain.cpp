@@ -1,12 +1,14 @@
 // dllmain.cpp : Defines the entry point for the DLL application.
 #include "pch.h"
 #include "PauseLayer.h"
+#include "MenuLayer.h"
 
 DWORD WINAPI gdware_thread(void* hModule) {
     if (MH_Initialize() != MH_OK) {
         FreeLibraryAndExitThread(reinterpret_cast<HMODULE>(hModule), 0);
     }
     MH_CreateHook(reinterpret_cast<void*>(gd::base + 0x1E4620), PauseLayer::hook, reinterpret_cast<void**>(&PauseLayer::init));
+    MH_CreateHook(reinterpret_cast<void*>(gd::base + 0x1907B0), MenuLayer::hook, reinterpret_cast<void**>(&MenuLayer::init));
     MH_EnableHook(MH_ALL_HOOKS);
 }
 
