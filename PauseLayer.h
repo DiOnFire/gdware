@@ -8,5 +8,6 @@ namespace PauseLayer {
 	class Callbacks {
 	public:
 		void noclipButton(CCObject*);
+		void everythingHurtsButton(CCObject*);
 	};
 }
